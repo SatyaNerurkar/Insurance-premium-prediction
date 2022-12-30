@@ -12,3 +12,5 @@ class EnvironmentVariable:
 env_var = EnvironmentVariable()
 
 mongo_client = pymongo.MongoClient(env_var.MONGO_DB_URL)
+
+TARGET_COLUMN = "expenses"

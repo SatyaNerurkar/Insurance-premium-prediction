@@ -41,9 +41,20 @@ class DataIngestionConfig:
         except Exception as e:
             raise PremiumException(e, sys)
 
+class DataValidationConfig:
+    def __init__(self, training_pipeline_config:TrainingPipelineConfig):
+        try:
+            # Define "data_validation" directory within "artifact".
+            self.data_validation_dir=os.path.join(training_pipeline_config.artifact_dir,"data_validation")
 
+            # Define "report.yaml" file inside "data_validation" directory.
+            self.reprt_file_dir=os.path.join(self.data_validation_dir,"report.yaml")
 
-class DataValidationConfig:...
+            # Define base file path.
+            self.base_file_dir=os.path.join("/config/workspace/insurance-premium-prediction-csv/insurance.csv")
+            
+        except Exception as e:
+            raise PremiumException(e, sys)
 
 class DataTransformationConfig:...
 

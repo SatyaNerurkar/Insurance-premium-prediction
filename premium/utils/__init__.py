@@ -2,8 +2,10 @@ import pymongo
 import os, sys
 from premium.logger import logging
 from premium.exception import PremiumException
+from premium import utils
 import pandas as pd
 import numpy as np
+import yaml
 from premium.config import mongo_client
 
 def get_collection_as_dataframe(database_name:str, collection_name:str)->pd.DataFrame:
@@ -32,3 +34,24 @@ def get_collection_as_dataframe(database_name:str, collection_name:str)->pd.Data
     except Exception as e:
         raise PremiumException(e, sys)
 
+def write_yaml_file(file_path, data:dict):
+    """
+    Description: This function will generate a data validation report as yaml file.
+    ===============================================================================
+    Params:
+    file_path: file path to store the report
+    data: Dictionary conaining data validation checks in key value pair
+    """
+    try:
+        # creating directory to store the yaml file.
+        logging.info("creating directory to store the yaml file.")
+        file_dir = os.path.dirname(file_path)
+        os.makedirs(file_dir, exist_ok=True)
+
+        # write all the data generated in "validation_error" dict in yaml file.
+        logging.info("write all the data generated in 'validation_error' dict in yaml file.")
+        with open(file_path,"w") as file_writer:
+            yaml.dump(data, file_writer) 
+
+    except Exception as e:
+        raise PremiumException(e, sys)

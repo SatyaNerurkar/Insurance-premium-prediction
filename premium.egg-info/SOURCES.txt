@@ -1,6 +1,7 @@
 README.md
 setup.py
 premium/__init__.py
+premium/config.py
 premium/exception.py
 premium/logger.py
 premium.egg-info/PKG-INFO
