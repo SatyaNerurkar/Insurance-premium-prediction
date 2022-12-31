@@ -6,6 +6,7 @@ from premium.exception import PremiumException
 FILE_NAME = "InsurancePremium.csv"
 TRAIN_FILE_NAME = "train.csv"
 TEST_FILE_NAME = "test.csv"
+TRANSFORMER_OBJECT_FILE_NAME = "transformer.pkl"
 
 class TrainingPipelineConfig:
     def __init__(self):
@@ -56,7 +57,21 @@ class DataValidationConfig:
         except Exception as e:
             raise PremiumException(e, sys)
 
-class DataTransformationConfig:...
+class DataTransformationConfig:
+    def __init__(self, training_pipeline_config:TrainingPipelineConfig):
+        try:
+            # Define "data_transformation" directory within "artifact".
+            self.data_transformation_dir = os.path.join(training_pipeline_config.artifact_dir, "data_transformation")
+
+            # Define"transformer.pkl" file inside "data_transformation" directory.
+            self.transformer_object_dir = os.path.join(self.data_transformation_dir,"transformer",TRANSFORMER_OBJECT_FILE_NAME)
+
+            # creating "train.csv" and "test.csv" files inside transformed directory
+            self.transformed_train_dir = os.path.join(self.data_transformation_dir,"transformed",TRAIN_FILE_NAME.replace(old="csv", new="npz"))
+            self.transformed_test_dir = os.path.join(self.data_transformation_dir,"transformed",TEST_FILE_NAME.replace(old="csv", new="npz"))
+
+        except Exception as e:
+            raise PremiumException(e, sys)
 
 class ModelTrainerConfig:...
 

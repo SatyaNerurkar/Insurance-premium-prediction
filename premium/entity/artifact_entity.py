@@ -11,7 +11,11 @@ class DataIngestionArtifact:
 class DataValidationArtifact:
     report_file_path:str
 
-class DataTransformationArtifact:...
+@dataclass
+class DataTransformationArtifact:
+    transformer_object_dir:str
+    transformed_train_dir:str
+    transformed_test_dir:str
 
 class ModelTrainerArtifact:...
 
