@@ -89,15 +89,11 @@ class DataTransformation:
             logging.info(f"reading training and testing file for data transformation.")
             train_df = pd.read_csv(self.data_ingestion_artifact.train_file_path)
             test_df = pd.read_csv(self.data_ingestion_artifact.test_file_path)
-            logging.info(f"train shape:{train_df.shape} and columns: {train_df.columns}")
-            logging.info(f"train shape:{test_df.shape} and columns: {test_df.columns}")
 
             # selecting input feature for train and test dataframe.
             logging.info(f"selecting input feature for train and test dataframe transformation.")
             input_feature_train_df = train_df.drop(TARGET_COLUMN, axis=1)
             input_feature_test_df = test_df.drop(TARGET_COLUMN, axis=1)
-            logging.info(f"Columns shape train df: {input_feature_train_df.shape} and columns: {input_feature_train_df.columns.tolist()}")
-            logging.info(f"Columns shape test df: {input_feature_test_df.shape} and columns: {input_feature_test_df.columns.tolist()}")
 
 
             # selecting target feature for train and test dataframe.
@@ -117,9 +113,7 @@ class DataTransformation:
             # create numpy array of transformed dataset.
             logging.info("create numpy array of transformed dataset.")
             train_arr = np.c_[ input_feature_train_arr, np.array(target_feature_train_df)]
-            logging.info(f"train_arr: {train_arr}")
             test_arr = np.c_[input_feature_test_arr, np.array(target_feature_test_df)]
-            logging.info(f"test_arr: {test_arr}")
 
             # save numpy array.
             logging.info(f"Storing  train array in {self.data_transformation_config.transformed_train_dir}")
