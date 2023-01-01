@@ -67,8 +67,8 @@ class DataTransformationConfig:
             self.transformer_object_dir = os.path.join(self.data_transformation_dir,"transformer",TRANSFORMER_OBJECT_FILE_NAME)
 
             # creating "train.csv" and "test.csv" files inside transformed directory
-            self.transformed_train_dir = os.path.join(self.data_transformation_dir,"transformed",TRAIN_FILE_NAME.replace(old="csv", new="npz"))
-            self.transformed_test_dir = os.path.join(self.data_transformation_dir,"transformed",TEST_FILE_NAME.replace(old="csv", new="npz"))
+            self.transformed_train_dir = os.path.join(self.data_transformation_dir,"transformed",TRAIN_FILE_NAME.replace("csv", "npz"))
+            self.transformed_test_dir = os.path.join(self.data_transformation_dir,"transformed",TEST_FILE_NAME.replace("csv", "npz"))
 
         except Exception as e:
             raise PremiumException(e, sys)
