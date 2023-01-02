@@ -17,7 +17,15 @@ class DataTransformationArtifact:
     transformed_train_dir:str
     transformed_test_dir:str
 
-class ModelTrainerArtifact:...
+@dataclass
+class ModelTrainerArtifact:
+    model_dir:str
+    train_root_mean_squared_error:float
+    test_root_mean_squared_error:float
+    model_accuracy:float
+    train_accuracy_score:float
+    test_accuracy_score:float
+
 
 class ModelEvaluationArtifact:...
 

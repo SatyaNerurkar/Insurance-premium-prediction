@@ -7,6 +7,7 @@ FILE_NAME = "InsurancePremium.csv"
 TRAIN_FILE_NAME = "train.csv"
 TEST_FILE_NAME = "test.csv"
 TRANSFORMER_OBJECT_FILE_NAME = "transformer.pkl"
+MODEL_FILE_NAME = "model.pkl"
 
 class TrainingPipelineConfig:
     def __init__(self):
@@ -73,7 +74,20 @@ class DataTransformationConfig:
         except Exception as e:
             raise PremiumException(e, sys)
 
-class ModelTrainerConfig:...
+class ModelTrainerConfig:
+    def __init__(self, training_pipeline_config:TrainingPipelineConfig):
+        try:
+            # Define "model_trainer" directory within "artifact".
+            self.model_trainer_dir = os.path.join(self.TrainingPipelineConfig.artifact_dir, "model_trainer")
+
+            # Define a directory to store trained model file on disk.
+            self.model_dir = os.path.join(self.model_trainer_dir,"model",MODEL_FILE_NAME)
+            
+            # Define a base accuracy as a threshold.
+            self.base_accuracy = 0.89792
+
+        except Exception as e:
+            raise PremiumException(e, sys)
 
 class ModelEvaluationConfig:...
 
