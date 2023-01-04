@@ -1,4 +1,5 @@
 import os, sys
+import numpy as np
 from premium.logger import logging
 from premium.exception import PremiumException
 from premium import utils
@@ -9,13 +10,15 @@ from sklearn.metrics import r2_score,mean_squared_error
 
 class ModelTrainer:
     
-    def __init__(self, data_transformation_artifact:artifact_entity.data_transformation_artifact, model_trainer_config:config_entity.ModelTrainerConfig):
+    def __init__(self, data_transformation_artifact:artifact_entity.DataTransformationArtifact, model_trainer_config:config_entity.ModelTrainerConfig):
         try:
             logging.info(f"|{'-'*50}||Model Trainer||{'-'*50}|")
             self.model_trainer_config = model_trainer_config
             self.data_transformation_artifact = data_transformation_artifact
             self.model = None
             self.best_params_ = None
+            self.x=None
+            self.y=None
         except Exception as e:
             raise PremiumException(e, sys)
 
@@ -35,7 +38,7 @@ class ModelTrainer:
         
             # Find the best hyperparameters.
             logging.info("Find the best hyperparameters.")
-            self.best_params_ = self.fine_tune(model)
+            self.best_params_ = self.fine_tune(model, x, y)
         
             # Train the model with the best hyperparameters
             logging.info("Train the model with the best hyperparameters.")
@@ -43,7 +46,7 @@ class ModelTrainer:
             self.model = model.set_params(**self.best_params_)
 
             # fit the train data.
-            self.model.fit(self.x, self.y)
+            self.model.fit(x, y)
 
             return model
 
@@ -51,9 +54,9 @@ class ModelTrainer:
             raise PremiumException(e, sys)
 
 
-    def fine_tune(self, model):
+    def fine_tune(self, model, x, y):
         # Define the hyperparameter grid
-        loggin.info("Define the hyperparameter grid.")
+        logging.info("Define the hyperparameter grid.")
         param_grid = {
                     'learning_rate': [0.01, 0.05, 0.1, 0.5, 1, 1.5],
                     'n_estimators': [50, 100, 150, 200, 250, 300, 350],
@@ -65,7 +68,7 @@ class ModelTrainer:
         
         # Fit the grid search model
         logging.info("Fit the grid search model.")
-        grid_search.fit(self.x, self.y)
+        grid_search.fit(x, y)
         
         # Return the best hyperparameters
         return grid_search.best_params_
@@ -90,7 +93,7 @@ class ModelTrainer:
 
             # Train the model
             logging.info(f"Train the model")
-            model = self.train_model(x=x_train,y=y_train)
+            model = self.train_model(x=x_train, y=y_train)
 
             # Calculating train accuracy score R2
             logging.info(f"Calculating R2 train accuracy score")
@@ -113,6 +116,7 @@ class ModelTrainer:
                 raise Exception(f"Model is not good as it is not able to give \
                 expected accuracy: {self.model_trainer_config.base_accuracy}: model actual score: {test_accuracy_score}")
 
+            logging.info(f"Current accuracy is better than threshold.")
             # save the trained model
             logging.info(f"Saving model object at {self.model_trainer_config.model_dir}")
             utils.save_object(file_path=self.model_trainer_config.model_dir, obj=model)

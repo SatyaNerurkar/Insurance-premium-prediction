@@ -78,7 +78,7 @@ class ModelTrainerConfig:
     def __init__(self, training_pipeline_config:TrainingPipelineConfig):
         try:
             # Define "model_trainer" directory within "artifact".
-            self.model_trainer_dir = os.path.join(self.TrainingPipelineConfig.artifact_dir, "model_trainer")
+            self.model_trainer_dir = os.path.join(training_pipeline_config.artifact_dir, "model_trainer")
 
             # Define a directory to store trained model file on disk.
             self.model_dir = os.path.join(self.model_trainer_dir,"model",MODEL_FILE_NAME)
