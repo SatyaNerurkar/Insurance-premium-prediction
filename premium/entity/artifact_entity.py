@@ -26,7 +26,9 @@ class ModelTrainerArtifact:
     train_accuracy_score:float
     test_accuracy_score:float
 
-
-class ModelEvaluationArtifact:...
+@dataclass
+class ModelEvaluationArtifact:
+    is_model_accepted:bool
+    improved_accuracy:float
 
 class ModelPusherArtifact:...

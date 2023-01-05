@@ -89,6 +89,9 @@ class ModelTrainerConfig:
         except Exception as e:
             raise PremiumException(e, sys)
 
-class ModelEvaluationConfig:...
+class ModelEvaluationConfig:
+    def __init__(self, training_pipeline_config:TrainingPipelineConfig):
+        # If trained model is performing better than production model by 1% accept it.
+        self.change_threshold = 0.01
 
 class ModelPusherConfig:...
