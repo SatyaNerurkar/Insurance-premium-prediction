@@ -58,13 +58,13 @@ class ModelTrainer:
         # Define the hyperparameter grid
         logging.info("Define the hyperparameter grid.")
         param_grid = {
-                    'learning_rate': [0.01, 0.05, 0.1, 0.5, 1, 1.5],
-                    'n_estimators': [50, 100, 150, 200, 250, 300, 350],
+                    'learning_rate': [0.001,0.005,0.01, 0.05, 0.1, 0.5, 1, 1.5],
+                    'n_estimators': [50, 100, 150, 200, 250, 300, 350, 400, 450, 500],
                     'max_depth': [2, 3, 4, 5, 6, 7, 8, 9]}
 
         # Create a GridSearchCV object
         logging.info("Create a GridSearchCV object.")
-        grid_search = GridSearchCV(model, param_grid, cv=5)
+        grid_search = GridSearchCV(model, param_grid, cv=10)
         
         # Fit the grid search model
         logging.info("Fit the grid search model.")

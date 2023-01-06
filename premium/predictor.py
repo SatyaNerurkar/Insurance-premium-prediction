@@ -47,7 +47,7 @@ class ModelResolver:
                 model_registry:str = "saved_models", 
                 transformer_dir_name="transformer",
                 model_dir_name="model"):
-        logging.info(f"|{'-'*50}||Model Trainer||{'-'*50}|")
+        logging.info(f"|{'-'*50}||Model Resolver||{'-'*50}|")
         self.model_registry = model_registry
         os.makedirs(self.model_registry,exist_ok=True)
         self.transformer_dir_name = transformer_dir_name

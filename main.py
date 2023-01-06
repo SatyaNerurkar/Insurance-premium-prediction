@@ -8,6 +8,7 @@ from premium.components.data_validation import DataValidation
 from premium.components.data_transformation import DataTransformation
 from premium.components.model_trainer import ModelTrainer
 from premium.components.model_evaluation import ModelEvaluation
+from premium.components.model_pusher import ModelPusher
 
 if __name__=="__main__":
      try:
@@ -44,6 +45,14 @@ if __name__=="__main__":
                                         data_transformation_artifact=data_transformation_artifact,
                                         model_trainer_artifact=model_trainer_artifact)
           model_eval_artifact = model_eval.initiate_model_evaluation()
+
+          #model pusher
+          model_pusher_config = config_entity.ModelPusherConfig(training_pipeline_config=training_pipeline_config)
+          model_pusher = ModelPusher(model_pusher_config =model_pusher_config, 
+                                     data_transformation_artifact = data_transformation_artifact, 
+                                     model_trainer_artifact = model_trainer_artifact)
+
+          model_pusher_artifact = model_pusher.initiate_model_pusher()
 
      except Exception as e:
           print(e)
