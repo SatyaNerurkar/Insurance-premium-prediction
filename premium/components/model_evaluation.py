@@ -2,7 +2,7 @@ import os, sys
 from premium.logger import logging
 from premium.exception import PremiumException
 from premium.entity import config_entity, artifact_entity
-from premium.predictor import Predictor
+from premium.predictor import Predictor, ModelResolver
 
 class ModelEvaluation:
     def __init__(self, 
@@ -17,7 +17,7 @@ class ModelEvaluation:
             self.data_ingestion_artifact = data_ingestion_artifact
             self.data_transformation_artifact = data_transformation_artifact
             self.model_trainer_artifact = model_trainer_artifact
-            self.predictor = Predictor()
+            self.model_resolver = ModelResolver()
         except Exception as e:
             raise PremiumException(e, sys)
 
@@ -26,7 +26,7 @@ class ModelEvaluation:
         try:
             # If saved model is present do a quick comparison of which one is best trained model.
             logging.info("Comparing trined model")
-            latest_dir_path = self.predictor.get_latest_dir_path()
+            latest_dir_path = self.model_resolver.get_latest_dir_path()
             if latest_dir_path == None:
                 # There is no model available for comparison. Setting method output parameters to none
                 logging.info("There is no model available for comparison. Setting method output parameters to none")
