@@ -4,6 +4,7 @@ premium/__init__.py
 premium/config.py
 premium/exception.py
 premium/logger.py
+premium/model_resolver.py
 premium/predictor.py
 premium.egg-info/PKG-INFO
 premium.egg-info/SOURCES.txt
