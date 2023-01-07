@@ -5,7 +5,7 @@ from premium.logger import logging
 from premium.exception import PremiumException
 from premium.utils import load_object
 from premium.entity import config_entity, artifact_entity
-from premium.predictor import Predictor, ModelResolver
+from premium.model_resolver import ModelResolver
 from sklearn.metrics import r2_score,mean_squared_error
 from premium.config import TARGET_COLUMN
 

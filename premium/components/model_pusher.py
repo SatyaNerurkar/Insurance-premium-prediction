@@ -3,7 +3,7 @@ from premium.logger import logging
 from premium.exception import PremiumException
 from premium.utils import load_object, save_object
 from premium.entity import config_entity, artifact_entity
-from premium.predictor import ModelResolver
+from premium.model_resolver import ModelResolver
 
 
 class ModelPusher:
