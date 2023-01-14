@@ -1,5 +1,6 @@
 import os
 import logging
+import pandas as pd
 from datetime import datetime
 
 # Define log file name with current date and time stamp in hr min and sec.
@@ -17,6 +18,6 @@ LOG_FILE_PATH = os.path.join(LOG_FILE_DIR,LOG_FILE_NAME)
 # Setup basic configuration for logging.
 logging.basicConfig(
     filename=LOG_FILE_PATH,
-    format="[ %(asctime)s ] %(lineno)d %(name)s - %(levelname)s - %(message)s",
+    format="[ %(asctime)s ] - %(lineno)d - %(name)s - %(levelname)s - %(message)s",
     level=logging.INFO,
 )

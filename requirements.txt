@@ -17,7 +17,7 @@ pandas
 PyYAML
 numpy
 scikit-learn
-sklearn
+Flask
 
 
 -e .

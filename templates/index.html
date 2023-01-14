@@ -1,0 +1,35 @@
+{% extends 'header.html' %}
+
+{% block head %}
+
+
+<title>Index</title>
+{% endblock %}
+
+{% block content %}
+
+    <div class="col-12"  style="margin-bottom:20px;">
+        <div class="card">
+            <div class="card-body">
+        
+                <h4 class="card-title">Greetings for the Day!</h4>
+                <p class="card-text">Welcome to our insurance premium prediction application!</p>
+                <p class="card-text">We understand that shopping for insurance can be overwhelming and finding the right coverage at the right price can be a difficult task. That's why we created this application - to help make the process easier for you.</p>
+                <p class="card-text">By using our application, you can have a clear understanding of the cost of coverage before you even contact an insurance agent. This will help you make an informed decision about your insurance needs and budget.</p>
+                <p class="card-text">Our state-of-the-art algorithm uses advanced data analysis and machine learning techniques to provide you with an accurate estimate of your premium based on various factors such as your age, location and overall health situation.</p>
+                <p class="card-text">We strive to make our application user-friendly and easy to navigate. You'll be able to input all your details in a few easy steps, and our prediction will be generated in single click.</p>
+                <p class="card-text">With our insurance premium prediction application, you can easily predict the cost of your insurance and make more informed decisions about your coverage. Try it today and experience the benefits for yourself!</p>
+                <p class="card-text">Thank you for choosing our insurance premium prediction application. We hope it will make your insurance shopping experience easier and more efficient.</p>
+                <!-- <a class="btn btn-primary" href="/predict">Get Your Estimated Price</a> -->
+                <a id="price-button" class="btn btn-primary" style="width: 300px;" href="/predict">
+                    <img id="price" width="30" src="/config/workspace/templates/icons8-expensive-price-50.png" alt="">
+                    <img id="price-gif" src="/config/workspace/templates/icons8-expensive-price.gif" alt="">
+                    <span style="font-weight: bold;">
+                        &nbsp; Get Your Estimated Price
+                    </span>
+                </a>
+            </div>
+        </div>
+        </div>         
+
+{% endblock %}
